@@ -824,11 +824,6 @@ button.update.btn.btn-outline-secondary.form__field-update-url {
 .cms .grid-field .add-existing-autocompleter input.relation-search {
   border-color: $brand-primary;
 }
-.cms
-  .grid-field
-  .add-existing-autocompleter
-  button.action_gridfield_relationadd {
-}
 
 .panel .alert {
   margin-bottom: 20px;
@@ -1102,8 +1097,16 @@ input[type='radio'].selector {
 .grid-field .add-existing-autocompleter {
   height: 35.99px;
 }
+
+// Fixes GridField Relation-Add "Link Existing" button with no colour and shorter than search input field height
 .cms .grid-field .add-existing-autocompleter button.action_gridfield_relationadd {
-  padding-top: 5px !important;
+  padding-top: 7px !important;
+  background-color: $brand-success;
+  color: #FFF;
+
+  &:hover {
+    background-color: $brand-success-hover;
+  }
 }
 
 .field.holder-good .alert,
@@ -1187,16 +1190,31 @@ form.validationerror .panel > .alert.alert-danger {
   display: table-cell;
 }
 
-// dcentrica/metaport-server
-
+// Fixes "Search" button, butting-up against final search-input field in search UI dialogue
 .search-form__submit.btn.btn-primary {
     margin-top: 16px;
 }
 
+// Fixes "Add <model_name> button butting-up against search UI input field
 .search-holder {
   margin-bottom: 16px;
 }
 
+// Fixes missing background color in GridField Relation-Add "Link Existing" UI
+li.ui-menu-item div.ui-menu-item-wrapper {
+  background-color: #EFEFEF;
+  border: solid 1px #CCC;
+  color: #000;
+
+  &:hover, &:link {
+    color: #000;
+  }
+}
+
+/*
+ * Metaport specific styles.
+ *
+ */
 h2, .h2 {
   font-size: 1.3rem;
 }
