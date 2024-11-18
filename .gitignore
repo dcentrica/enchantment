@@ -7,3 +7,4 @@ composer.lock
 yarn-error.log
 package-lock.json
 hot
+.vite

@@ -1,6 +1,6 @@
 export default function initCfg(command, mode, ssrBuild) {
   const dev = command === 'serve';
-  const host = 'silverstripe.lh';
+  const host = 'metaport.dev';
 
   const buildAssetsDir = '../../../dist/enchantment/assets/';
 
@@ -28,7 +28,7 @@ export default function initCfg(command, mode, ssrBuild) {
 
   return {
     host,
-    certs: `/Applications/MAMP/Library/OpenSSL/certs/${host}`,
+    certs: `../../../../../certs/${host}`,
 
     sassAdditionalData: `
       $bootstrap-icons-font-dir: '${bootstrap_icon_path}';
