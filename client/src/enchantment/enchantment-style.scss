@@ -1211,6 +1211,18 @@ li.ui-menu-item div.ui-menu-item-wrapper {
   }
 }
 
+// Fixes SortableGridField text-input fields
+.grid-field input.grid-field__sort-field {
+  width: auto;
+  border: solid 1px #CCC;
+}
+
+// Fixes disappearing GirdFieldFilterHeader search & cancel icons
+.action.btn.grid-field__filter-submit.ss-gridfield-button-filter.form-group--no-label,
+.action.btn.grid-field__filter-clear.ss-gridfield-button-close.form-group--no-label {
+  color: #37455a;
+}
+
 /*
  * Metaport specific styles.
  *
