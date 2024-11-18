@@ -1186,3 +1186,17 @@ form.validationerror .panel > .alert.alert-danger {
 .grid-field__col-compact:not(.action-menu) {
   display: table-cell;
 }
+
+// dcentrica/metaport-server
+
+.search-form__submit.btn.btn-primary {
+    margin-top: 16px;
+}
+
+.search-holder {
+  margin-bottom: 16px;
+}
+
+h2, .h2 {
+  font-size: 1.3rem;
+}
