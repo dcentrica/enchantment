@@ -8,6 +8,7 @@ use SilverStripe\Core\Environment;
 use SilverStripe\View\Requirements;
 use SilverStripe\SiteConfig\SiteConfig;
 use Goldfinch\Enchantment\Helpers\BuildHelper;
+use SilverStripe\Core\Config\Config;
 
 class EnchantmentAssetsExtension extends Extension
 {
@@ -17,71 +18,11 @@ class EnchantmentAssetsExtension extends Extension
             $cfg = SiteConfig::current_site_config();
 
             if ($cfg->ThemeEnchantment) {
-                // silverstripe-admin
-                Requirements::block(
-                    'silverstripe/admin: client/dist/styles/bundle.css',
-                );
-                // Requirements::css('silverstripe/admin: dist/css/LeftAndMain_printable.css');
-
-                // silverstripe-cms
-                Requirements::block(
-                    'silverstripe/cms: client/dist/styles/bundle.css',
-                );
-
-                // silverstripe-session-manager
-                Requirements::block(
-                    'silverstripe/session-manager: client/dist/styles/bundle.css',
-                );
-
-                // silverstripe-versioned-admin
-                Requirements::block(
-                    'silverstripe/versioned-admin:client/dist/styles/bundle.css',
-                );
-
-                // silverstripe-asset-admin
-                Requirements::block(
-                    'silverstripe/asset-admin:client/dist/styles/bundle.css',
-                );
-
-                // silverstripe/campaign-admin
-                if (
-                    InstalledVersions::isInstalled(
-                        'silverstripe/campaign-admin',
-                    ) &&
-                    !InstalledVersions::isInstalled('goldfinch/cleaner')
-                ) {
-                    Requirements::block(
-                        'silverstripe/campaign-admin: client/dist/styles/bundle.css',
-                    );
-                }
-
-                // silverstripe-mfa (for Security templates refer to _config.php)
-                if (InstalledVersions::isInstalled('silverstripe/mfa')) {
-                    Requirements::block(
-                        'silverstripe/mfa: client/dist/styles/bundle-cms.css',
-                    );
-
-                    // silverstripe/totp-authenticator (for Security templates refer to _config.php)
-                    if (
-                        InstalledVersions::isInstalled(
-                            'silverstripe/totp-authenticator',
-                        )
-                    ) {
-                        Requirements::block(
-                            'silverstripe/totp-authenticator: client/dist/styles/bundle.css',
-                        );
+                foreach (Config::forClass(__CLASS__)->get('block_packages') as $packageName) {
+                    if (InstalledVersions::isInstalled($packageName)) {
+                        Requirements::block(sprintf('%s:client/dist/styles/bundle.css', $packageName));
+                        Requirements::block(sprintf('%s:client/dist/css/GroupedCmsMenu.css', $packageName));
                     }
-                }
-
-                // goldfinch/silverstripe-grouped-cms-menu
-                if (
-                    InstalledVersions::isInstalled(
-                        'goldfinch/silverstripe-grouped-cms-menu',
-                    )
-                ) {
-                    Requirements::block(
-                        'goldfinch/silverstripe-grouped-cms-menu:client/dist/css/GroupedCmsMenu.css',
-                    );
                 }
 
                 if (BuildHelper::isProduction()) {
